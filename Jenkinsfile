@@ -1,3 +1,10 @@
+import hudson.model.*;
+import java.util.regex.Matcher;
+import jenkins.util.*;
+import jenkins.model.*;
+import jenkins.scm.*;
+import groovy.json.*;
+
 pipeline {
 
     environment {
