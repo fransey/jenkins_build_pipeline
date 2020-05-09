@@ -34,9 +34,6 @@ pipeline {
 		groupid = "${pom.groupId}";
                 artifactid = "${pom.artifactId}";
                 pomVersion = "${pom.version}";
-		println("GroupID: " + groupid)
-                println("ArtifactID: " + artifactid)
-                println("Version: " + pomVersion)
             }
           }
 		  }
