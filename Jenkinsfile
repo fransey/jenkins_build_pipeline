@@ -53,7 +53,7 @@ pipeline {
 	  
 	 stage('Deploy to Nexus') {
          steps {
-             bat "mvn -DskipTests=true -Dmaven.skipTests=true -f pom.xml clean package -Dversion=${pom.version} deploy:deploy -DaltDeploymentRepository=localnexus::default::snapshots"
+             bat "mvn -DskipTests=true -Dmaven.skipTests=true -f pom.xml clean package -Dversion=${pom.version} deploy:deploy -DaltDeploymentRepository=localnexus::default::http://localhost:8081/repository/snapshots/"
          }
       }	
 	  
