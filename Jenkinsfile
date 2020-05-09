@@ -30,6 +30,9 @@ pipeline {
           steps {
 		  script {
 		pom = readMavenPom file: "pom.xml";
+		groupid = "${pom.groupId}";
+                artifactid = "${pom.artifactId}";
+                pomVersion = "${pom.version}";
             }
           }
 	  
