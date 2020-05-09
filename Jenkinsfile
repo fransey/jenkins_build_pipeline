@@ -28,8 +28,8 @@ pipeline {
     }
 	stage('Retreive POM Data') {
           steps {
-            script {
-                pom = readMavenPom file: "${pom_location}"
+		  script {
+		pom = readMavenPom file: "pom.xml";
                 groupid = "${pom.groupId}";
                 artifactid = "${pom.artifactId}";
                 pomVersion = "${pom.version}";
