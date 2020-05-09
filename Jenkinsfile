@@ -35,7 +35,7 @@ pipeline {
                 pomVersion = "${pom.version}";
 		println("GroupID: " + groupid)
                 println("ArtifactID: " + artifactid)
-                println("Version: " + version)
+                println("Version: " + pomVersion)
             }
           }
 	  
