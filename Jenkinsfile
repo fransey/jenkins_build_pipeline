@@ -6,11 +6,8 @@ import jenkins.scm.*;
 import groovy.json.*;
 
 pipeline {
-
     environment {
        GROOVY_HOME = tool name: 'groovy 2.4.6', type: 'hudson.plugins.groovy.GroovyInstallation'
-
-   
     }
 	
   agent {
@@ -38,6 +35,15 @@ pipeline {
                 println("Version: " + pomVersion)
             }
           }
+		
+	stage('Build using Maven') { // Compile
+     tools {
+        maven 'mvnscm - 3.6.3'
+    }
+    steps {
+             bat "mvn -DskipTests=true package"
+         }
+      }
 	  
   }
 }
