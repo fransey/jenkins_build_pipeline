@@ -1,16 +1,7 @@
-import hudson.model.*;
-import java.util.regex.Matcher;
-import jenkins.util.*;
-import jenkins.model.*;
-import jenkins.scm.*;
-import groovy.json.*;
-
 pipeline {
 
     environment {
        GROOVY_HOME = tool name: 'groovy 2.4.6', type: 'hudson.plugins.groovy.GroovyInstallation'
-
-   
     }
 	
   agent {
@@ -19,12 +10,13 @@ pipeline {
             customWorkspace "C:/Users/francesca.seychell/Devops/demo-workspace"
         }
     }
+	
   stages {
     stage(' Retrieve Source') { // Get code
       steps {
 	cleanWs()
         // get code from Git repository
-        git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url: 'https://github.com/seycf13/Demo-Devops.git'
+        git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url: 'https://github.com/fransey/springboot_app.git'
       }
     }
 	
