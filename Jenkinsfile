@@ -25,7 +25,7 @@ pipeline {
                 maven 'mvnscm - 3.6.3'
             }
             steps {
-                {
+				script {
                     pom = readMavenPom file: "pom.xml";
                     pomVersion = "${pom.version}";
                 }
