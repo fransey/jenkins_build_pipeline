@@ -5,9 +5,10 @@ pipeline {
     }
 
     agent {
+	    node {
             label 'node-1'
             customWorkspace "C:/Users/francesca.seychell/Devops/customWorkspace"
-            
+	    }  
     }
 
     stages {
