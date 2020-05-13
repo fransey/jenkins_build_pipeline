@@ -7,31 +7,19 @@ pipeline {
     agent {
         node {
             label 'master'
-            customWorkspace "C:/Users/francesca.seychell/Devops/demo-workspace"
+            customWorkspace "C:/Users/francesca.seychell/Devops/customWorkspace"
         }
     }
 
     stages {
         stage(' Retrieve Source') { // Get code
             steps {
-                cleanWs()
-                // get code from Git repository
+                 // get code from Git repository
                 git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url: 'https://github.com/fransey/springboot_app.git'
             }
         }
 
-        stage('Retreive POM Data') {
-            steps {
-                script {
-                    pom = readMavenPom file: "pom.xml";
-                    groupid = "${pom.groupId}";
-                    artifactid = "${pom.artifactId}";
-                    pomVersion = "${pom.version}";
-                }
-            }
-        }
-
-
+      
         stage('Build using Maven') { // Compile
             tools {
                 maven 'mvnscm - 3.6.3'
