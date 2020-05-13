@@ -12,7 +12,7 @@ pipeline {
     }
 
     stages {
-        stage(' Retrieve Source') { // Get code
+        stage('Get sourcecode') { // Get code
             steps {
                  // get code from Git repository
                 git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url: 'https://github.com/fransey/springboot_app.git'
@@ -25,7 +25,8 @@ pipeline {
                 maven 'mvnscm - 3.6.3'
             }
             steps {
-				script {
+		script {
+		    //added  pipeline utility steps plugin	
                     pom = readMavenPom file: "pom.xml";
                     pomVersion = "${pom.version}";
                 }
@@ -35,7 +36,8 @@ pipeline {
 
         stage('Deploy to Nexus') {
             steps {
-                bat "mvn -DskipTests=true -Dmaven.skipTests=true -f pom.xml clean package -Dversion=pomVersion deploy:deploy -DaltDeploymentRepository=localnexus::default::http://localhost:8081/repository/snapshots/"
+		    //-DaltDeploymentRepository -> specifies an alternative repo to which the project artifacts should be deployed (id:layout:url)
+                bat "mvn -DskipTests=true -f pom.xml clean package -Dversion=pomVersion deploy:deploy -DaltDeploymentRepository=localnexus::default::http://localhost:8081/repository/snapshots/"
             }
         }
 
