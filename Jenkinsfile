@@ -15,7 +15,7 @@ pipeline {
         stage('Get sourcecode') { // Get code
             steps {
                  // get code from Git repository
-                git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url: 'https://github.com/fransey/springboot_app.git'
+		    git branch: 'master', credentialsId: 'cb21cb62-bd2b-4f2a-855c-d7255ea9644a', url:"${Github_URL}"
             }
         }
 
