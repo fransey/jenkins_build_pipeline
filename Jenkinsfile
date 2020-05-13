@@ -25,13 +25,17 @@ pipeline {
                 maven 'mvnscm - 3.6.3'
             }
             steps {
+                {
+                    pom = readMavenPom file: "pom.xml";
+                    pomVersion = "${pom.version}";
+                }
                 bat "mvn -DskipTests=true package"
             }
         }
 
         stage('Deploy to Nexus') {
             steps {
-                bat "mvn -DskipTests=true -Dmaven.skipTests=true -f pom.xml clean package -Dversion=${pom.version} deploy:deploy -DaltDeploymentRepository=localnexus::default::http://localhost:8081/repository/snapshots/"
+                bat "mvn -DskipTests=true -Dmaven.skipTests=true -f pom.xml clean package -Dversion=pomVersion deploy:deploy -DaltDeploymentRepository=localnexus::default::http://localhost:8081/repository/snapshots/"
             }
         }
 
