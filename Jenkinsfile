@@ -6,7 +6,7 @@ pipeline {
 
     agent {
 	    node {
-            label 'node-1'
+            label 'master'
             customWorkspace "C:/Users/francesca.seychell/Devops/customWorkspace"
 	    }  
     }
